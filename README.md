@@ -10,5 +10,5 @@ This is a 2d map (.tmx format) explorer.
 Why
 ===
 
- 1 - to get familiar with Tiled, Löve and ATL.
- 2 - to have a nice tool for game development 
+ 1. to get familiar with Tiled, Löve and ATL.
+ 2. to have a nice tool for game development 
