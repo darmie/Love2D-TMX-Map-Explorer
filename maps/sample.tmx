@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="40" height="40" tilewidth="16" tileheight="16">
+ <tileset firstgid="49" name="test" tilewidth="16" tileheight="16" spacing="1" margin="1">
+  <image source="test.png" width="86" height="86"/>
+ </tileset>
+ <layer name="Calque 1" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztkqEVwDAQhW60Jn1Juv9E/Quci0AgEFges6re8IQRJsxP+MIKG+iUTp1TOnVO6dQ5pZP/+R+pm//5H8EpnfzP/0jd/M//CE7p5H/+R+rmf/5HcEqnzimd/M//SN38747/OgCpEA==
+  </data>
+ </layer>
+ <layer name="Calque 2" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztl0sOwCAIRD1Y73+upjtiRAFlJM28xA2LMk75xNYIIYSQ2jzioPNZcqO1WeNSF0LfyqNZDOXfiNH/Q+uxeqfVWrZey/c9tXkSi3fe2jyJ1ND3JHJ2aGg6PPMvk9Vsu8luP2beQat9T87q+jLZnbOIvkDv+AjRXkXeJ6Lxht8V5oo1f/W6lPRatT1dae944mgq7+wP7xuPEPIfXrVsF+k=
+  </data>
+ </layer>
+</map>
