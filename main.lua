@@ -1,9 +1,16 @@
 -- Tell Lua where are the modules
-package.path = './lib/?.lua;./lib/?/init.lua;' .. package.path
+package.path =
+	'./lib/?.lua;'..
+	'./lib/?/?.lua;'..
+	'./lib/?/init.lua;'..
+	package.path
 
 -- ATL needs to know where it is
 TILED_LOADER_PATH = 'lib/ATL/AdvTiledLoader/'
+
+-- requires
 local ATL = require('ATL/AdvTiledLoader')
+local cron = require('cron')
 -- local Dev = require('Dev')
 
 local camera = {
@@ -16,17 +23,31 @@ local mouse = {
 	dragDrop = false
 }
 
+
 -- Initialization
 function love.load(arguments)
 	-- arguments[1] == 'app.love'
 	local mapDir  = arguments[2] or 'maps/'
 	local mapFile = arguments[3] or 'sample.tmx'
+	local mapFullName = mapDir .. mapFile
 	-- load the map
 	ATL.Loader.path = mapDir
-	if love.filesystem.exists(mapDir .. mapFile) then
+	if love.filesystem.exists(mapFullName) then
 		map = ATL.Loader.load(mapFile)
+		-- reload the file periodically if changed
+		local modificationTime = love.filesystem.getLastModified(mapFullName)
+		cron.every(2, function() -- every 2 seconds
+			local lastMod, errMsg = love.filesystem.getLastModified(mapFullName)
+			if lastMod == nil then
+				error(errMsg)
+			elseif lastMod and lastMod > modificationTime then
+				print('Map has changed.', lastMod, modificationTime)
+				modificationTime = lastMod
+				map = ATL.Loader.load(mapFile)
+			end
+		end)
 	else
-		error("File (" .. mapDir .. mapFile .. ") does not exists")
+		error("File (" .. mapFullName .. ") does not exists")
 	end
 
 end
@@ -55,7 +76,8 @@ function love.mousereleased( x, y, mb )
 end
 
 function love.update(dt)
-
+	-- cron system does need ticks
+	cron.update(dt)
 	-- camera position
 	if mouse.dragDrop then -- mouse grab
 		local x, y = love.mouse.getPosition()
