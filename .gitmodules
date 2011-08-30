@@ -1,3 +1,6 @@
 [submodule "lib/ATL"]
 	path = lib/ATL
 	url = https://github.com/Kadoba/Advanced-Tiled-Loader.git
+[submodule "lib/cron"]
+	path = lib/cron
+	url = https://github.com/kikito/cron.lua.git
